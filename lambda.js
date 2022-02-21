@@ -57,16 +57,19 @@ KI(I)(M) // == M
 const T = K;
 const F = KI;
 
+
 // NOT | Negation | λp.pTF == Cardinal
 // Whichever boolean (p) is passed in will select it's opposite
 const not = p => p(F)(T);
 not(T); // returns F
 C(T); // returns a function that returns F
 
+
 // AND | Conjunction | λpq.pqp | λpq.pqF 
 const and = p => q => p(q)(p);
 and(T)(F); // F
 and(T)(T); // T
+
 
 // OR | Disjunction | λpq.ppq | λpq.pTq | M* (mocking bird once removed)
 const or = p => q => p(p)(q);
@@ -79,9 +82,12 @@ M(F)(F) // F
 // = xxy
 // Mxy == xxy
 
+
 // Boolean Equality | λpq.p(q T F)(q F T) | λpq.p q(NOT(q))
 // tests if p and q are equal
 const beq = p => q => p(q(T)(F))(q(F)(T));
 beq(T)(T) // T
 beq(F)(T) // F
 beq(F)(F) // T
+
+
